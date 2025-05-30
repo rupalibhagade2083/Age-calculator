@@ -1,0 +1,31 @@
+<h2>Age Calculator</h2>
+  <input type="date" id="dob"> <br><br>
+  <button onclick="Calculate()">Calculate Age</button> <br><br>
+  <div class="result" id="result"></div>
+  
+  <script>
+    function Calculate() {
+      const dob = document.getElementById("dob").value;
+        console.log(dob);
+        if (!dob) {
+            return document.getElementById("result").innerText = "Please Select Your Age";
+        }      
+        // 07/07/1997
+        const birthDate = new Date(dob);
+        const today = new Date();        
+        let years = today.getFullYear() - birthDate.getFullYear();  // 2025 - 1997 = 28`````````````````````````````````````````````````````````````````````````````````````````````1`
+        let months = today.getMonth() - birthDate.getMonth();       // 4 - 6  = 2
+        let days = today.getDate() - birthDate.getDate();           // 2 - 7  = -5
+        if (days < 0) {
+            months--;
+            days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        }
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+        document.getElementById("result").innerText = `Your Age: ${years} Years, ${months} Months, ${days} Days.`;
+    }
+</script>
+
+*Age Calculator*
